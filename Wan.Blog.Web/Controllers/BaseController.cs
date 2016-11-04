@@ -12,7 +12,7 @@ namespace Wan.Blog.Web.Controllers
 
         private User GetUser()
         {
-            return Redis.Get<User>(this.CurrentUserId);
+            return Redis.Get<User>(CurrentUserId);
         }
 
         public string CurrentUserId => GetUserId();
