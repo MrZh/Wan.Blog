@@ -73,7 +73,7 @@ namespace Wan.Release.Infrastructure.Extends
             var propsList = new List<string>();
             var ps = classType.GetProperties();
             var tableName = classType.GetTableName();
-
+            var exp = " where ";
             foreach (var i in ps)
             {
                 var isKey = i.IsPrimaryKey();
@@ -83,7 +83,16 @@ namespace Wan.Release.Infrastructure.Extends
                 }
                 else
                 {
-                    propsList.Add(i.Name);
+                    var relId = i.GetRelId();
+                    if (!string.IsNullOrEmpty(relId))
+                    {
+                        exp = exp + relId + "=@" + i.Name + ",";
+                        propsList.Add(relId);
+                    }
+                    else
+                    {
+                        propsList.Add(i.Name);
+                    }
                 }
 
             }
@@ -120,12 +129,34 @@ namespace Wan.Release.Infrastructure.Extends
                 return sqlText;
             }
 
-            if (!commandEnum.Equals(CommandEnum.Delete)) return null;
+            if (commandEnum.Equals(CommandEnum.Delete))
             {
                 var sqlText = "delete from " + tableName;
                 sqlText += " where " + propsList[0] + "=@" + propsList[0];
 
                 return sqlText;
+            }
+
+            if (commandEnum.Equals(CommandEnum.RelDelete))
+            {
+                var sqlText = "delete from " + tableName;
+                exp = exp.Substring(0, exp.Length - 1);
+                exp = exp.Replace(",", " and ");
+                return sqlText + exp;
+            }
+
+            if (!commandEnum.Equals(CommandEnum.RelUpdate)) return null;
+            {
+                var sqlText = "update " + tableName + " set ";
+                for (var i = 1; i < propsList.Count; i++)
+                {
+                    sqlText = sqlText + propsList[i] + "=@" + propsList[i] + ",";
+                }
+
+                sqlText = sqlText.Substring(0, sqlText.Length - 1);
+                exp = exp.Substring(0, exp.Length - 1);
+                exp = exp.Replace(",", " and ");
+                return sqlText + exp;
             }
         }
 
@@ -145,7 +176,7 @@ namespace Wan.Release.Infrastructure.Extends
             var propsList = new List<string>();
             var ps = classType.GetProperties();
             var tableName = classType.GetTableName();
-
+            var exp = " where ";
             foreach (var i in ps)
             {
                 var temp = i.GetValue(type);
@@ -158,7 +189,16 @@ namespace Wan.Release.Infrastructure.Extends
 
                 else
                 {
-                    propsList.Add(i.Name);
+                    var relId = i.GetRelId();
+                    if (!string.IsNullOrEmpty(relId))
+                    {
+                        exp = exp + relId + "=@" + i.Name + ",";
+                        propsList.Add(relId);
+                    }
+                    else
+                    {
+                        propsList.Add(i.Name);
+                    }
                 }
             }
 
@@ -196,12 +236,34 @@ namespace Wan.Release.Infrastructure.Extends
                 return sqlText;
             }
 
-            if (!commandEnum.Equals(CommandEnum.Delete)) return null;
+            if (commandEnum.Equals(CommandEnum.Delete))
             {
                 var sqlText = "delete from " + tableName;
                 sqlText += " where " + propsList[0] + "=@" + propsList[0];
 
                 return sqlText;
+            }
+
+            if (commandEnum.Equals(CommandEnum.RelDelete))
+            {
+                var sqlText = "delete from " + tableName;
+                exp = exp.Substring(0, exp.Length - 1);
+                exp = exp.Replace(",", " and ");
+                return sqlText + exp;
+            }
+
+            if (!commandEnum.Equals(CommandEnum.RelUpdate)) return null;
+            {
+                var sqlText = "update " + tableName + " set ";
+                for (var i = 1; i < propsList.Count; i++)
+                {
+                    sqlText = sqlText + propsList[i] + "=@" + propsList[i] + ",";
+                }
+
+                sqlText = sqlText.Substring(0, sqlText.Length - 1);
+                exp = exp.Substring(0, exp.Length - 1);
+                exp = exp.Replace(",", " and ");
+                return sqlText + exp;
             }
         }
 
