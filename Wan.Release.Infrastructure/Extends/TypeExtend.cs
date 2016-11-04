@@ -8,7 +8,7 @@ namespace Wan.Release.Infrastructure.Extends
     public static class TypeExtend
     {
         /// <summary>
-        /// 获得当前的TableName
+        ///     获得当前的TableName
         /// </summary>
         /// <param name="classType">type</param>
         /// <returns>表名称</returns>
@@ -35,7 +35,7 @@ namespace Wan.Release.Infrastructure.Extends
         }
 
         /// <summary>
-        /// 获得所有的属性字段,id放到第一个,如果没有主键返回Null
+        ///     获得所有的属性字段,id放到第一个,如果没有主键返回Null
         /// </summary>
         /// <param name="classType"></param>
         /// <returns></returns>
@@ -57,13 +57,12 @@ namespace Wan.Release.Infrastructure.Extends
                 {
                     propsList.Add(i.Name);
                 }
-
             }
             return !hasKey ? null : propsList;
         }
 
         /// <summary>
-        /// 获得当前类型的Sql语句
+        ///     获得当前类型的Sql语句
         /// </summary>
         /// <param name="classType">当前type</param>
         /// <param name="commandEnum">sql类型</param>
@@ -94,7 +93,6 @@ namespace Wan.Release.Infrastructure.Extends
                         propsList.Add(i.Name);
                     }
                 }
-
             }
             if (commandEnum.Equals(CommandEnum.Insert))
             {
@@ -112,7 +110,6 @@ namespace Wan.Release.Infrastructure.Extends
                 valueText += ")";
 
                 return sqlText + valueText;
-
             }
 
             if (commandEnum.Equals(CommandEnum.Update))
@@ -161,7 +158,7 @@ namespace Wan.Release.Infrastructure.Extends
         }
 
         /// <summary>
-        /// 获得当前类型的Sql语句
+        ///     获得当前类型的Sql语句
         /// </summary>
         /// <param name="classType">当前type</param>
         /// <param name="type">当前type的对象</param>
@@ -219,7 +216,6 @@ namespace Wan.Release.Infrastructure.Extends
                 valueText += ")";
 
                 return sqlText + valueText;
-
             }
 
             if (commandEnum.Equals(CommandEnum.Update))
@@ -268,7 +264,7 @@ namespace Wan.Release.Infrastructure.Extends
         }
 
         /// <summary>
-        /// in expression now is forbidden
+        ///     in expression now is forbidden
         /// </summary>
         /// <param name="classType"></param>
         /// <param name="type"></param>
@@ -311,7 +307,6 @@ namespace Wan.Release.Infrastructure.Extends
                     {
                         propsList.Add(i.Name);
                     }
-
                 }
             }
 

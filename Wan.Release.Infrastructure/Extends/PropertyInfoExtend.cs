@@ -8,7 +8,6 @@ namespace Wan.Release.Infrastructure.Extends
 {
     public static class PropertyInfoExtend
     {
-
         /// <summary>
         /// 是否是主键
         /// </summary>
@@ -30,7 +29,6 @@ namespace Wan.Release.Infrastructure.Extends
             isPrimaryKey = false;
             foreach (var item in propertyInfo.GetCustomAttributes())
             {
-
                 if (item is KeyAttribute)
                 {
                     isPrimaryKey = true;
@@ -83,7 +81,15 @@ namespace Wan.Release.Infrastructure.Extends
         public static string GetRelId(this PropertyInfo propertyInfo)
         {
             var isKey = propertyInfo.GetCustomAttributes().OfType<KeyAttribute>().Any();
-            return isKey ? null : propertyInfo.GetCustomAttributes().OfType<RelIdAttribute>().Select(item => item as RelIdAttribute).Select(columnAttribute => string.IsNullOrWhiteSpace(columnAttribute.Name) ? propertyInfo.Name : columnAttribute.Name).FirstOrDefault();
+            return isKey
+                ? null
+                : propertyInfo.GetCustomAttributes()
+                    .OfType<RelIdAttribute>()
+                    .Select(item => item)
+                    .Select(
+                        columnAttribute =>
+                            string.IsNullOrWhiteSpace(columnAttribute.Name) ? propertyInfo.Name : columnAttribute.Name)
+                    .FirstOrDefault();
         }
     }
 }

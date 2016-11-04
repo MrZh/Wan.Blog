@@ -9,7 +9,7 @@ namespace Wan.Release.Infrastructure.Command
     public class Command<T> : BaseCommand where T : Entity.Entity
     {
         /// <summary>
-        /// Init for T
+        ///     Init for T
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="commandEnum"></param>
@@ -19,8 +19,9 @@ namespace Wan.Release.Infrastructure.Command
             Sql = obj.GetType().GetSql(obj, commandEnum);
             Obj = obj;
         }
+
         /// <summary>
-        /// Init for List of T
+        ///     Init for List of T
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="commandEnum"></param>
@@ -38,7 +39,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for List of T
+        ///     Init for List of T
         /// </summary>
         /// <param name="objs"></param>
         public Command(List<T> objs)
@@ -55,7 +56,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for T
+        ///     Init for T
         /// </summary>
         /// <param name="obj"></param>
         public Command(T obj)
@@ -66,7 +67,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for T
+        ///     Init for T
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="justSql"></param>
@@ -89,7 +90,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for List of T
+        ///     Init for List of T
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="justSql"></param>
@@ -113,7 +114,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for T
+        ///     Init for T
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="commandEnum"></param>
@@ -124,7 +125,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// 只用于用于批量添加数据 批量更新某一些字段和批量删除
+        ///     只用于用于批量添加数据 批量更新某一些字段和批量删除
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="commandEnum"></param>
@@ -136,7 +137,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for List of T
+        ///     Init for List of T
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="commandEnum"></param>

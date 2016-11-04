@@ -11,15 +11,16 @@ namespace Wan.Release.Infrastructure.Base
     public class CommandContext
     {
         public static string ConnString = ConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-        private readonly string _connString;
         private static readonly ILog Logger = LogManager.GetLogger(typeof(BaseCommand));
+        private readonly string _connString;
+
         public CommandContext(string connString)
         {
             _connString = connString;
         }
 
         /// <summary>
-        /// 执行事务
+        ///     执行事务
         /// </summary>
         /// <param name="baseCommand">基础事务语句</param>
         /// <param name="commandTimeout">事务执行时间</param>
@@ -56,7 +57,7 @@ namespace Wan.Release.Infrastructure.Base
         }
 
         /// <summary>
-        /// 执行事务
+        ///     执行事务
         /// </summary>
         /// <param name="baseCommand">基础事务语句</param>
         /// <param name="commandTimeout">事务执行时间</param>
@@ -93,7 +94,7 @@ namespace Wan.Release.Infrastructure.Base
         }
 
         /// <summary>
-        /// 执行事务
+        ///     执行事务
         /// </summary>
         /// <param name="baseCommands">基础事务语句</param>
         /// <param name="commandTimeout">事务执行时间</param>
@@ -112,7 +113,11 @@ namespace Wan.Release.Infrastructure.Base
                 {
                     try
                     {
-                        result += baseCommands.Sum(baseCommand => conn.Execute(baseCommand.Sql, baseCommand.Obj, trans, commandTimeout, CommandType.Text));
+                        result +=
+                            baseCommands.Sum(
+                                baseCommand =>
+                                    conn.Execute(baseCommand.Sql, baseCommand.Obj, trans, commandTimeout,
+                                        CommandType.Text));
                     }
                     catch (DataException ex)
                     {
@@ -130,7 +135,7 @@ namespace Wan.Release.Infrastructure.Base
         }
 
         /// <summary>
-        /// 执行事务
+        ///     执行事务
         /// </summary>
         /// <param name="baseCommands">基础事务语句</param>
         /// <param name="commandTimeout">事务执行时间</param>
@@ -149,7 +154,11 @@ namespace Wan.Release.Infrastructure.Base
                 {
                     try
                     {
-                        result += baseCommands.Sum(baseCommand => conn.Execute(baseCommand.Sql, baseCommand.Obj, trans, commandTimeout, CommandType.Text));
+                        result +=
+                            baseCommands.Sum(
+                                baseCommand =>
+                                    conn.Execute(baseCommand.Sql, baseCommand.Obj, trans, commandTimeout,
+                                        CommandType.Text));
                     }
                     catch (DataException ex)
                     {
@@ -167,7 +176,7 @@ namespace Wan.Release.Infrastructure.Base
         }
 
         /// <summary>
-        /// 执行Command
+        ///     执行Command
         /// </summary>
         /// <param name="baseComand"></param>
         /// <returns></returns>
@@ -184,7 +193,7 @@ namespace Wan.Release.Infrastructure.Base
         }
 
         /// <summary>
-        /// 执行Command
+        ///     执行Command
         /// </summary>
         /// <param name="baseComand"></param>
         /// <returns></returns>

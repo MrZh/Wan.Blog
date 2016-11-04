@@ -7,12 +7,12 @@ using Wan.Release.Infrastructure.Extends;
 namespace Wan.Release.Infrastructure.Command
 {
     /// <summary>
-    /// Just for sth very special
+    ///     Just for sth very special
     /// </summary>
     public class CommonCommand : BaseCommand
     {
         /// <summary>
-        /// Init for object and commandType
+        ///     Init for object and commandType
         /// </summary>
         /// <param name="obj">obj</param>
         /// <param name="commandEnum">commandType</param>
@@ -24,7 +24,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for list of object and commandType
+        ///     Init for list of object and commandType
         /// </summary>
         /// <param name="objs">obj</param>
         /// <param name="commandEnum">commandType</param>
@@ -40,9 +40,9 @@ namespace Wan.Release.Infrastructure.Command
             Obj = objs;
             Sql = objs[0].GetType().GetSql(objs[0], commandEnum);
         }
-        
+
         /// <summary>
-        /// Init for list of object
+        ///     Init for list of object
         /// </summary>
         /// <param name="objs">obj</param>
         public CommonCommand(List<object> objs)
@@ -59,7 +59,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for object
+        ///     Init for object
         /// </summary>
         /// <param name="obj">obj</param>
         public CommonCommand(object obj)
@@ -70,7 +70,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for obj with commandType
+        ///     Init for obj with commandType
         /// </summary>
         /// <param name="obj">obj</param>
         /// <param name="justSql">true for full sql, false for the sql from obj</param>
@@ -93,7 +93,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init for list of obj with commandType
+        ///     Init for list of obj with commandType
         /// </summary>
         /// <param name="objs">obj</param>
         /// <param name="justSql">true for full sql, false for the sql from obj</param>
@@ -117,7 +117,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init BaseCommand for object
+        ///     Init BaseCommand for object
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="commandEnum"></param>
@@ -128,7 +128,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// 只用于批量增加数据
+        ///     只用于批量增加数据
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="commandEnum"></param>
@@ -140,7 +140,7 @@ namespace Wan.Release.Infrastructure.Command
         }
 
         /// <summary>
-        /// Init BaseCommand for everyone in objs
+        ///     Init BaseCommand for everyone in objs
         /// </summary>
         /// <param name="objs"></param>
         /// <param name="commandEnum"></param>

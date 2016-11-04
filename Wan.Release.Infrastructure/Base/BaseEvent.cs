@@ -7,13 +7,6 @@ namespace Wan.Release.Infrastructure.Base
 {
     public class BaseEvent
     {
-        public string Id { get; protected set; }
-        public DateTime CreateTime { get; protected set; }
-
-        public string EventBody { get; protected set; }
-
-        public string Author { get; protected set; }
-
         protected BaseEvent(BaseCommand command, string author = null)
         {
             Author = author;
@@ -29,6 +22,13 @@ namespace Wan.Release.Infrastructure.Base
             Id = Guid.NewGuid().ToString();
             CreateTime = DateTime.Now;
         }
+
+        public string Id { get; protected set; }
+        public DateTime CreateTime { get; protected set; }
+
+        public string EventBody { get; protected set; }
+
+        public string Author { get; protected set; }
 
         public virtual void SentEvent()
         {
