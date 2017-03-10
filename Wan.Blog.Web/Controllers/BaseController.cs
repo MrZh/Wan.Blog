@@ -8,14 +8,14 @@ namespace Wan.Blog.Web.Controllers
     {
         protected User CurrentUser => GetUser();
 
-        protected CommonRedis Redis = new CommonRedis();
+        protected readonly CommonRedis Redis = new CommonRedis();
 
         private User GetUser()
         {
             return Redis.Get<User>(CurrentUserId);
         }
 
-        public string CurrentUserId => GetUserId();
+        private string CurrentUserId => GetUserId();
 
         private string GetUserId()
         {
